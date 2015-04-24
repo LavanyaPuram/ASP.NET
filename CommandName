@@ -1,0 +1,61 @@
+SOURCE VIEW:
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="CommandNmae.aspx.cs" Inherits="CommandNmae" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+    <b>Enter Number1: </b>
+        <asp:TextBox ID="txt1" runat="server"></asp:TextBox>
+        <br />
+        <b>Enter Number2: </b>
+        <asp:TextBox ID="txt2" runat="server"></asp:TextBox>
+        <br />
+        <asp:Button ID="btn1" runat="server" Text="Add" CommandName="Add" OnCommand="btnCalculate_Click" />
+        &nbsp;&nbsp;
+        <asp:Button ID="btn2" runat="server" Text="Sub" CommandName="Sub" OnCommand="btnCalculate_Click" />
+        <br />
+        <b>Result: </b>
+        <asp:TextBox ID="txtResult" runat="server" ReadOnly="true"></asp:TextBox>
+    </div>
+    </form>
+</body>
+</html>
+
+CODE VIEW:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class CommandNmae : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+    protected void btnCalculate_Click(object sender, CommandEventArgs e)
+    {
+        float num1 = float.Parse(txt1.Text);
+        float num2 = float.Parse(txt2.Text);
+        float result = 0;
+        if (e.CommandName == "Add")
+        {
+            result = num1 + num2;
+        }
+        else if (e.CommandName == "Sub")
+        {
+            result = num1 - num2;
+        }
+        txtResult.Text = result.ToString();
+    }
+}
