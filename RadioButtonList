@@ -1,0 +1,47 @@
+SOURCE VIEW:
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="RadioButtonList.aspx.cs" Inherits="RadioButtonList" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+    <b>select any option:</b><br />
+        <asp:RadioButtonList ID="rdbList" runat="server" RepeatColumns="2" RepeatDirection="Horizontal" AutoPostBack="true" OnSelectedIndexChanged="rdbList_SelectedIndexChanged">
+            <asp:ListItem Text="Option1"></asp:ListItem>
+            <asp:ListItem Text="Option2"></asp:ListItem>
+            <asp:ListItem Text="Option3"></asp:ListItem>
+            <asp:ListItem Text="Option4"></asp:ListItem>
+        </asp:RadioButtonList>
+        <asp:Label ID="lblResult" runat="server"></asp:Label>
+    </div>
+    </form>
+</body>
+</html>
+
+
+CODE VIEW:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class RadioButtonList : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+    protected void rdbList_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        lblResult.Text ="Selected Option is: "+ rdbList.SelectedItem.Text;
+    }
+}
