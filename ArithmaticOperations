@@ -1,0 +1,83 @@
+SOURCE VIEW:
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ArithmaticOperations.aspx.cs" Inherits="ArithmaticOperations" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+    <p><b><h3>Arithmatic Operations</h3></b></p>
+        <asp:Label runat="server" Text="Enter Number 1:"></asp:Label>
+        &nbsp;
+        <asp:TextBox ID="txt1" runat="server"></asp:TextBox>
+        <br />
+        <asp:Label runat="server" Text="Enter Number 2:"></asp:Label>
+        &nbsp;<asp:TextBox ID="txt2" runat="server"></asp:TextBox>
+        <br />
+        <b>Select Option:</b>
+        <asp:DropDownList ID="ddl1" runat="server" AutoPostBack="true" OnSelectedIndexChanged="ddl1_SelectedIndexChanged">
+            <asp:ListItem>Select</asp:ListItem>
+            <asp:ListItem>Add</asp:ListItem>
+            <asp:ListItem>Sub</asp:ListItem>
+            <asp:ListItem>Mul</asp:ListItem>
+            <asp:ListItem>Div</asp:ListItem>
+        </asp:DropDownList>
+        <br /><br />
+        <asp:Label runat="server" Text="Result:"></asp:Label>
+        &nbsp;
+        <asp:TextBox ID="txtResult" runat="server" ReadOnly="true"></asp:TextBox>
+    </div>
+    </form>
+</body>
+</html>
+
+
+CODE VIEW:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class ArithmaticOperations : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+    protected void ddl1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        float num1 = float.Parse(txt1.Text.Trim());
+        float num2 = float.Parse(txt2.Text.Trim());
+        float result = 0;
+        switch (ddl1.SelectedIndex)
+        {
+            case 0: Response.Write("please select any option");
+                break;
+            case 1: result=num1 + num2;
+                break;
+            case 2: result=num1 - num2;
+                break;
+            case 3: result=num1* num2;
+                break;
+            case 4: result = num1 / num2;
+                break;
+
+        }
+        if (ddl1.SelectedIndex > 0)
+        {
+            txtResult.Text = result.ToString();
+        }
+        else
+        {
+            txtResult.Text = string.Empty;
+        }
+    }
+}
