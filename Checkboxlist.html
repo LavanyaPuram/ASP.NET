@@ -1,0 +1,58 @@
+SOURCE VIEW:
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="CheckboxList.aspx.cs" Inherits="CheckboxList" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+    <asp:CheckBoxList ID="chk1" runat="server" RepeatColumns="2" RepeatDirection="Horizontal" RepeatLayout="Table">
+        <asp:ListItem Text="Visual C#"></asp:ListItem>
+        <asp:ListItem Text="Visual Basic"></asp:ListItem>
+        <asp:ListItem Text="Visual F#"></asp:ListItem>
+        <asp:ListItem Text="Visual J#"></asp:ListItem>
+    </asp:CheckBoxList>
+        <br />
+        <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
+        <br />
+        <asp:Label ID="lbl1" runat="server"></asp:Label>
+    </div>
+    </form>
+</body>
+</html>
+
+
+CODE VIEW:
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class CheckboxList : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+    protected void btnSubmit_Click(object sender, EventArgs e)
+    {
+        string strCheckedItems = string.Empty;
+        foreach (ListItem li in chk1.Items)
+        {
+            if (li.Selected == true)
+            strCheckedItems += li.Text + ",";
+        }
+        if (strCheckedItems.Length > 0)
+        {
+            strCheckedItems = strCheckedItems.Remove(strCheckedItems.Length - 1, 1);
+            lbl1.Text = "Checked Languages are: " + strCheckedItems;
+        }
+    }
+}
